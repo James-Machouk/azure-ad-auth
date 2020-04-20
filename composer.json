@@ -1,5 +1,5 @@
 {
-    "name": "James-Machouk/azure-ad-auth",
+    "name": "james-machouk/azure-ad-auth",
     "description": "it's an easy and simple way to integrate azure active directory login with laravel auth",
     "require": {
         "league/oauth2-client": "dev-master"
