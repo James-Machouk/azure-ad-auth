@@ -8,8 +8,6 @@ return [
     //this is where to redirect users if theirs login succeed ( user route name only )
     "redirect_success" => "home",
     //this is where to redirect users if theirs login fails
-    "redirect_fail" => "/",
-    //if azure Active Directory is off , allow laravel auth registration ?
-    "allow_registration" => env('ALLOW_REGISTRATION', false),
+    "redirect_fail" => "/"
 
 ];

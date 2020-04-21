@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['web']], function () {
@@ -11,10 +10,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/callback', 'JamesMachouk\azureAdAuth\AzureAdAuthController@azureCallback');
         Route::namespace('App\Http\Controllers')->group(function () {
             Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-        });
-    }else{
-        Route::namespace('App\Http\Controllers\Auth')->group(function () {
-            Auth::routes(['register' => config('azureAdAuth.allow_registration')]);
         });
     }
 });
