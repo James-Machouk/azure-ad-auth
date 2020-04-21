@@ -13,7 +13,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
         });
     }else{
-        Route::namespace('App\Http\Controllers')->group(function () {
+        Route::namespace('App\Http\Controllers\Auth')->group(function () {
             Auth::routes(['register' => config('azureAdAuth.allow_registration')]);
         });
     }
