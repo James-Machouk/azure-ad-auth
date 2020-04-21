@@ -13,20 +13,6 @@ if deactivated, you can controller registration on your project by locking or un
 * you need to have "name, email, password" field on your "Users" database table
 
 
-Use the package manager [composer](https://getcomposer.org/doc/00-intro.md/) to install azure-ad-auth.
-
-```bash
-composer require james-machouk/azure-ad-auth
-```
-
-## Usage
-
-
-publish the package with artisan
-```bash
-composer require james-machouk/azure-ad-auth
-```
-
 add this lines to you .env file
 ```bash
 AZURE_AD_TENANT_ID="your ad tenant id"
@@ -46,6 +32,21 @@ ALLOW_REGISTRATION=false
 + **OAUTH_AUTHORITY** / **OAUTH_AUTHORIZE_ENDPOINT** / **OAUTH_TOKEN_ENDPOINT** : this paths are given by microsoft, do not change them unless microsoft changes them.
 + **OVERRIDE_DEFAULT_LOGIN** : this params is to activate or deactivate the package
 + **ALLOW_REGISTRATION**  : this is to activate or deactivate the registration of the default Laravel Auth
+
+
+Use the package manager [composer](https://getcomposer.org/doc/00-intro.md/) to install azure-ad-auth.
+
+```bash
+composer require james-machouk/azure-ad-auth
+```
+
+## Usage
+
+publish the package with artisan
+```bash
+composer require james-machouk/azure-ad-auth
+```
+
 
 
 after publishing, you'll find a new config file *azureAdAuth.php*
