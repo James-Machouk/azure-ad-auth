@@ -43,11 +43,11 @@ class AzureAdAuthController extends Controller
           if (!isset($expectedState)) {
             // If there is no expected state in the session,
             // do nothing and redirect to the home page.
-            return redirect(config('azureAdAuth.redirect_fail'));
+            return redirect()->route(config('azureAdAuth.redirect_success'));
           }
 
           if (!isset($providedState) || $expectedState != $providedState) {
-            return redirect(config('azureAdAuth.redirect_fail'))
+            return redirect()->route(config('azureAdAuth.redirect_fail'))
               ->with('error', 'Invalid auth state')
               ->with('errorDetail', 'The provided auth state did not match the expected value');
           }
@@ -98,20 +98,20 @@ class AzureAdAuthController extends Controller
               if($this->checkUser(json_decode($output))){
                   //get this from config "redirect_success"
                   $thepage= config('azureAdAuth.redirect_success');
-                  return  redirect($thepage);
+                  return  redirect()->route($thepage);
               }
               // --- TODO : Make a good code for ERROR Handling logic ...
-                return redirect(config('azureAdAuth.redirect_fail'))
+                return redirect()->route(config('azureAdAuth.redirect_fail'))
                     ->with('error', 'Access token received')
                     ->with('errorDetail', $accessToken->getToken());
             }
             catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-                return redirect(config('azureAdAuth.redirect_fail'))
+                return redirect()->route(config('azureAdAuth.redirect_fail'))
                     ->with('error', 'Error requesting access token')
                     ->with('errorDetail', $e->getMessage());
             }
           }
-            return redirect(config('azureAdAuth.redirect_fail'))
+            return redirect()->route(config('azureAdAuth.redirect_fail'))
                 ->with('error', $request->query('error'))
                 ->with('errorDetail', $request->query('error_description'));
         }
