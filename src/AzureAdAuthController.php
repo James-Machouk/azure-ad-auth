@@ -72,13 +72,6 @@ class AzureAdAuthController extends Controller
                 'code' => $authCode
               ]);
 
-              // if every thing is oukey, then get the user email
-
-              // Get the access token from the cache if you want to
-                //$tokenCache = new TokenCache();
-                //$accessToken = $tokenCache->getAccessToken();
-
-
               // hna we speak m3a 7bibna Graph
               $ch = curl_init();
               // set url
@@ -134,5 +127,18 @@ class AzureAdAuthController extends Controller
             }
             Auth::login($theUser);
             return Auth::check();
+        }
+
+        public function adLogout()
+        {
+            $currentUser = Auth::user();
+            if ($currentUser == null) {
+                //No Laravel user is found try to logout from Azure
+                $azureLogoutPath = env('OAUTH_AUTHORITY') . env('AZURE_AD_TENANT_ID') . '/oauth2/v2.0/logout?post_logout_redirect_uri=' . urlencode(env('OAUTH_REDIRECT_AFTER_LOGOUT_URI'));
+                return redirect()->away($azureLogoutPath);
+            } else {
+                // the laravel session is still alive you need to logout from laravel before logging out from Azure
+                throw new \Exception('you need to logout from laravel before calling the AD logout URL.');
+            }
         }
 }

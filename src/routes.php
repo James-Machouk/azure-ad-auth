@@ -11,6 +11,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::namespace('App\Http\Controllers')->group(function () {
             Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
         });
+        Route::get('/adLogout','JamesMachouk\azureAdAuth\AzureAdAuthController@adLogout')->name('adLogout');
     }
 });
 
